@@ -1,0 +1,23 @@
+.example-header-image {
+  background-image: url('https://cdn3.iconfinder.com/data/icons/avatars-round-flat/33/avat-01-512.png');
+  background-size: cover;
+}
+
+.rating-list {
+  display: inline-block;
+  list-style: none;
+}
+
+.rating-list li {
+  float: right;
+  color: #ddd;
+  padding: 5px 2px;
+
+}
+
+
+.rating-list li:hover ~ li, .rating-list li.selected {
+  color: #ffd700;
+}
+
+

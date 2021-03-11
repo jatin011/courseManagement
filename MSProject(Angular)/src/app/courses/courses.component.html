@@ -1,0 +1,15 @@
+<div class="SearchDiv">
+  <input type="text" placeholder="Search Courses..." [(ngModel)]="searchText" (keyup)="onChangeSearchText($event)">
+  <div class="trendsButtonDiv">
+    <span style="font-weight: bold;">Sort By:<mat-icon>sort</mat-icon> </span>
+    <button mat-raised-button color="primary" style="margin:10px" (click)="sortBy='feedback'">Feedbacks</button>
+    <button mat-raised-button color="primary" style="margin:10px" (click)="sortBy='rating'">Ratings</button>
+  </div>
+</div>
+
+<div style="display: flex;justify-content: center;">
+  <div *ngIf="sortBy=='feedback'?sortByFeedback():sortByRating() "></div>
+  <div style="width: 60%; display: grid;grid-template-columns: 1fr 1fr;">
+    <app-coursescard style="width: 80%;" *ngFor="let course of allCourse;index as i" [currentCourse]="course"  [averageRating]="course.averageRating"  ></app-coursescard>
+</div>
+</div>

@@ -1,0 +1,94 @@
+.mainDiv{
+  display: flex;
+  margin-top: 50px;
+  padding-bottom: 50px;
+  flex-direction: row;
+  justify-content: center;
+
+}
+
+
+.cardDiv{
+  width:80%
+}
+
+.cardDiv img{
+  max-height: 600px;
+}
+
+mat-card-subtitle{
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+.courseDetailsDiv{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  margin-top: 20px;
+  border:2px solid teal;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.courseDetailsDiv .details
+{
+  flex: 50%;
+}
+
+.courseDetailsDiv .materials
+{
+  align-self: center;
+}
+.courseDetailsDiv hr{
+  margin: 20px;
+}
+.courseDetailsDiv .details
+{
+  flex: 40%;
+}
+
+
+.materials{
+  justify-content: center;
+}
+
+.materialLink{
+  border: 1px solid grey;
+  cursor:grab;
+  display: block;
+  margin: 20px;
+  padding:10px;
+  border-radius: 2px;
+  color: teal;
+  max-width: 150px;
+  overflow: hidden;
+}
+
+
+.materialLink:hover{
+  color: white;
+  background-color: teal;
+}
+
+.custom-file-upload {
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+.skillCircle{
+  border-radius: 20px;
+  border:1px solid black;
+  background-color:lightgrey;
+  display: inline-block;
+  width: fit-content;
+  margin:5px
+}
+
+ span{
+  display: inline-block;
+  padding: 3px;
+  margin:5px;
+}

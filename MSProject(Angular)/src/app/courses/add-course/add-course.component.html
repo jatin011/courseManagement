@@ -1,0 +1,88 @@
+<app-header></app-header>
+<div class="mainDiv">
+  <div class="mainForm" >
+    <form [formGroup]="addCourseFormGroup">
+      <h2 style="text-align: center;color: blueviolet;"> Add New Course </h2>
+      <div class="mat-form-field-div">
+        <mat-form-field appearance="standard">
+          <mat-label>Course Name</mat-label>
+          <input matInput placeholder="Ex : Introduction to C++" formControlName="courseName">
+          <mat-icon matSuffix >library_books</mat-icon>
+        </mat-form-field>
+      </div>
+      <div class="mat-form-field-div">
+        <mat-form-field appearance="standard">
+          <mat-label>UserID</mat-label>
+          <input matInput placeholder="Placeholder" formControlName="userId"  disabled=true>
+          <mat-icon matSuffix >supervised_user_circle</mat-icon>
+        </mat-form-field>
+      </div>
+      <div class="mat-form-field-div">
+        <mat-form-field appearance="legacy">
+          <mat-label>Course Desciption</mat-label>
+          <textarea matInput placeholder="Enter Description about your course" formControlName="courseDescription" ></textarea>
+          <mat-icon matSuffix >description</mat-icon>
+        </mat-form-field>
+      </div>
+      <div class="mat-form-field-div">
+        <mat-form-field appearance="standard">
+          <mat-label>Pre Requisite</mat-label>
+          <textarea matInput placeholder="Enter Pre Requisites." formControlName="preRequisite"></textarea>
+          <mat-icon matSuffix >library_books</mat-icon>
+        </mat-form-field>
+      </div>
+
+      <div class="mat-form-field-div">
+        <mat-form-field appearance="standard">
+          <mat-label>Image URL</mat-label>
+          <input matInput placeholder="Enter a Image URL"  formControlName="imageUrl">
+          <mat-icon matSuffix >image</mat-icon>
+        </mat-form-field>
+      </div>
+
+      <div class="mat-form-field-div">
+        <mat-form-field appearance="standard">
+          <mat-label>skills</mat-label>
+          <input matInput placeholder="Ex: c++,java etc" [matAutocomplete]="auto"/>
+          <mat-icon matSuffix>code</mat-icon>
+          <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFnWrapper()">
+            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+              {{option.skillName}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </div>
+
+      <div *ngFor='let skill of this.skillsSelected' style="display: inline;">
+        <div class="skillCircle">
+          <span>{{skill.skillName}}</span>
+        </div>
+      </div>
+
+
+      <div class="mat-form-field-div">
+        <mat-form-field appearance="standard">
+          <mat-label>Training Material Description</mat-label>
+          <textarea matInput placeholder="Enter Description." formControlName="materialDescription" ></textarea>
+          <mat-icon matSuffix >library_books</mat-icon>
+        </mat-form-field>
+      </div>
+
+      <div class="mat-form-field-div">
+        <label class="custom-file-upload">
+          <mat-icon matSuffix>cloud_upload</mat-icon>
+          <input type="file" style="display: none;" (change)="uploadfile($event)" formControlName="fileData" multiple/>
+          <span> Upload Material</span>
+        </label>
+      </div>
+
+
+      <div class="mat-form-field-div">
+        <button  (click)="addCourse()" style="margin-bottom:10px ;margin-top: 10px;" mat-raised-button color="primary">Add Course</button>
+      </div>
+      </form>
+  </div>
+</div>
+
+
+

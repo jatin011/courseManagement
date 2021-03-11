@@ -1,0 +1,17 @@
+<mat-card>
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>{{feedback.participantName}}</mat-card-title>
+    <mat-card-subtitle>{{feedback.createdAt|date}}</mat-card-subtitle>
+    <ul class="list-inline rating-list"
+          *ngFor="let star of stars" style="display: inline-block" >
+            <li
+                [ngClass]="{'selected': (star <= selectedValue)}">
+                <mat-icon>star</mat-icon>
+            </li>
+      </ul>
+  </mat-card-header>
+  <p style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">{{feedback.feedbackText}}</p>
+</mat-card>
+
+

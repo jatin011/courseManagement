@@ -1,0 +1,23 @@
+<div class="courseCard">
+<mat-card>
+  <img mat-card-image src="https://www.geteducated.com/wp-content/uploads/2019/11/online-tutoring-concept-ebooks-internet-courses-process-vector-staff-vector-id1053519062.jpg">
+  <mat-card-title>{{currentCourse.courseName}}</mat-card-title>
+  <mat-card-subtitle>{{currentCourse.courseDescription}}</mat-card-subtitle>
+  <div class="ratingAndButtonDiv">
+    <div style="flex: 0.5;">
+      <ul class="list-inline rating-list"
+      *ngFor="let star of stars" style="display: inline-block" >
+        <li
+            [ngClass]="{'selected': (star <= averageRating)}">
+            <mat-icon>star</mat-icon>
+        </li>
+      </ul>
+    </div>
+    <div class="buttonGroups">
+      <button mat-raised-button color="primary" (click)="viewCourse(currentCourse.courseId)">View</button>
+      <button mat-raised-button color="warn" (click)="deleteCourse()">Delete</button>
+    </div>
+  </div>
+
+</mat-card>
+</div>

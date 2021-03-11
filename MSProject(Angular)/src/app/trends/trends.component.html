@@ -1,0 +1,43 @@
+<app-header></app-header>
+<div *ngIf="allCourse!=null" style="display: flex;flex-direction:column;justify-content: center;align-items: center;padding: 40px;">
+  <div style="display:block;width:60%; ">
+    <h1>Trends </h1>
+    <hr>
+    <br>
+    <mat-card style="margin-bottom: 30px;">
+      <mat-card-title>Ratings</mat-card-title>
+      <canvas baseChart
+      [datasets]="ratingBarChartData"
+      [labels]="ratingBarChartLabels"
+      [options]="ratingBarChartOptions"
+      [plugins]="barChartPlugins"
+      [legend]="barChartLegend"
+      [chartType]="barChartType">
+    </canvas>
+    </mat-card>
+    <mat-card style="margin-bottom:30px ;">
+      <mat-card-title>Feedbacks</mat-card-title>
+      <canvas baseChart
+      [datasets]="feedbackBarChartData"
+      [labels]="feedbackBarChartLabels"
+      [options]="feedbackBarChartOptions"
+      [plugins]="barChartPlugins"
+      [legend]="barChartLegend"
+      [chartType]="barChartType">
+    </canvas>
+    </mat-card>
+
+    <mat-card style="margin-bottom:30px ;">
+      <mat-card-title>Locations</mat-card-title>
+      <canvas baseChart
+      [datasets]="userLocationBarChartData"
+      [labels]="userLocationBarChartLabels"
+      [options]="userLocationBarChartOptions"
+      [plugins]="barChartPlugins"
+      [legend]="barChartLegend"
+      [chartType]="barChartType">
+    </canvas>
+    </mat-card>
+
+  </div>
+</div>

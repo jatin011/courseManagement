@@ -1,0 +1,54 @@
+<app-header></app-header>
+<div class="mainDiv">
+  <div class="mainForm"  >
+    <form [formGroup]="editCourseFormGroup">
+      <h2 style="text-align: center;color: blueviolet;"> Edit Course </h2>
+      <div class="mat-form-field-div">
+        <mat-form-field appearance="standard">
+          <mat-label>Course Name</mat-label>
+          <input matInput placeholder="Ex : Introduction to C++" formControlName="courseName">
+          <mat-icon matSuffix >library_books</mat-icon>
+        </mat-form-field>
+      </div>
+      <div class="mat-form-field-div">
+        <mat-form-field appearance="standard">
+          <mat-label>Course Id</mat-label>
+          <input matInput placeholder="Ex : Introduction to C++" formControlName="courseId">
+          <mat-icon matSuffix >library_books</mat-icon>
+        </mat-form-field>
+      </div>
+      <div class="mat-form-field-div">
+        <mat-form-field appearance="standard">
+          <mat-label>User ID</mat-label>
+          <input matInput placeholder="Ex : Introduction to C++" formControlName="userId">
+          <mat-icon matSuffix >library_books</mat-icon>
+        </mat-form-field>
+      </div>
+      <div class="mat-form-field-div">
+        <mat-form-field appearance="standard">
+          <mat-label>Course Description</mat-label>
+          <input matInput placeholder="Ex : Introduction to C++" formControlName="courseDescription">
+          <mat-icon matSuffix >library_books</mat-icon>
+        </mat-form-field>
+      </div>
+      <div class="mat-form-field-div">
+        <mat-form-field appearance="standard">
+          <mat-label>PreRequisite</mat-label>
+          <input matInput placeholder="Ex : Introduction to C++" formControlName="preRequisites">
+          <mat-icon matSuffix >library_books</mat-icon>
+        </mat-form-field>
+      </div>
+      <div class="mat-form-field-div">
+        <mat-form-field appearance="standard">
+          <mat-label>Image Url</mat-label>
+          <input matInput placeholder="Ex : Introduction to C++" formControlName="imageUrl">
+          <mat-icon matSuffix >library_books</mat-icon>
+        </mat-form-field>
+      </div>
+      <div class="mat-form-field-div">
+        <button style="margin-bottom:10px ;margin-top: 10px;margin-left: 10px;" mat-raised-button color="primary" (click)="editCourse()" ><mat-icon matPrefix>edit</mat-icon> Edit Course</button>
+        <button style="margin-bottom:10px ;margin-top: 10px;margin-left: 10px;" mat-raised-button color="warn" (click)="cancel()">	<mat-icon>cancel</mat-icon>Cancel</button>
+      </div>
+      </form>
+  </div>
+</div>

@@ -1,0 +1,80 @@
+<app-header></app-header>
+<div *ngIf="course!=null" class="mainDiv">
+  <div class="cardDiv">
+    <mat-card>
+      <img mat-card-image src="{{course.imageUrl}}">
+      <div style="display: flex;flex-direction: row;">
+        <mat-card-title>{{course.courseName | uppercase}}</mat-card-title>
+        <button mat-raised-button color="primary" style="margin-left: auto;" (click)="editCourse()"><mat-icon>edit</mat-icon>Edit Course</button>
+      </div>
+      <div class="courseDetailsDiv">
+        <div class="details">
+          <h3>Course Description</h3>
+          <mat-card-subtitle >{{course.courseDescription}}</mat-card-subtitle>
+          <hr>
+          <h4>PreRequisite Required</h4>
+          <mat-card-subtitle>{{course.preRequisite}}</mat-card-subtitle>
+          <hr>
+          <h4>
+            Skills
+          </h4>
+          <div *ngFor='let skill of skills' style="display: inline;">
+            <div class="skillCircle">
+              <span>{{skill}}</span>
+            </div>
+          </div>
+        </div>
+        <hr>
+        <div *ngIf="materials!=null" class="materials" >
+          <mat-card-title style="color: teal;">Training Materials</mat-card-title>
+          <mat-card *ngFor="let material of materials ; index as i" style="padding: 10px;margin-bottom: 10px;">
+            <mat-card-subtitle *ngIf="!isEditable[i]" >{{ this.material.materialDescription }}</mat-card-subtitle>
+            <mat-form-field *ngIf="isEditable[i]" appearance="standard">
+              <mat-label>Material Description</mat-label>
+              <textarea matInput placeholder="Description about material "  [(ngModel)]="material.materialDescription"></textarea>
+              <mat-icon matSuffix >library_books</mat-icon>
+            </mat-form-field>
+            <div style="display: flex;justify-content: center;">
+              <label *ngIf="isEditable[i]"  class="custom-file-upload">
+                <mat-icon matSuffix>cloud_upload</mat-icon>
+                <input type="file" style="display: none;" (change)="uploadNewFile($event)"/>
+                <span> Upload Material</span>
+              </label>
+            </div>
+
+            <a  class="materialLink" *ngIf="!isEditable[i]" (click)="downloadFile(material.fileData,material.fileType)"  #TrainingMaterialLink download>{{material.fileName}}</a>
+            <div style="display: flex;justify-content: center; margin-bottom: 20px;">
+              <button  mat-raised-button color="primary" *ngIf="!isEditable[i]" (click)="editMaterial(i)"><mat-icon>edit</mat-icon>Edit Material</button>
+            </div>
+            <div style="display: flex;justify-content: center;">
+              <button   mat-raised-button  color="primary" *ngIf="isEditable[i]" (click)="doneEditing(material,i)" ><mat-icon>done</mat-icon>Done Editing</button>
+            </div>
+            <div style="display: flex;justify-content: center;margin-bottom: 20px;">
+              <button  mat-raised-button color="accent" *ngIf="!isEditable[i]" (click)="!isPreviousVisible[i] ?getPreviousVersions(i,material.materialId):isPreviousVisible[i]=false "> <mat-icon *ngIf="!isPreviousVisible[i]">list</mat-icon> <mat-icon *ngIf="isPreviousVisible[i]" >highlight_off</mat-icon> {{isPreviousVisible[i] ?" hide Previous Versions" :"See Previous Version"}} </button>
+            </div>
+            <div style="display: flex;justify-content: center;">
+              <button   mat-raised-button  *ngIf="isEditable[i]" (click)="cancelEditing(i)" color="warn">	<mat-icon>cancel</mat-icon>Cancel</button>
+            </div>
+
+            <div *ngIf="isPreviousVisible[i]" style="display: flex;flex-direction:column;justify-content: center;align-items: center;">
+              <a  class="materialLink" *ngFor="let previous of material.previousVersions" (click)="downloadFile(previous.fileData,previous.fileType)"  #TrainingMaterialLink download>{{previous.fileName}}</a>
+            </div>
+          </mat-card>
+
+
+
+        </div>
+      </div>
+
+      <div class="feedbackDiv">
+        <h2> Feedbacks </h2>
+        <hr>
+        <li *ngFor='let feedback of feedbacks'  style="list-style: none;margin:40px">
+          <app-feedback-card [feedback]="feedback" ></app-feedback-card>
+        </li>
+      </div>
+
+    </mat-card>
+  </div>
+
+</div>

@@ -1,0 +1,23 @@
+<app-header></app-header>
+<div style="background: darkblue">
+  <div class="login-box ">
+    <h2> Login </h2>
+    <div class="input-box">
+      <input type="text" name="password" [(ngModel)]='username' placeholder="Username" >
+    </div>
+    <div class="input-box">
+      <input type="password" name="password" [(ngModel)]="password" placeholder="Password">
+    </div>
+    <div class="button-box">
+      <button (click)='loginWithUsername()'>Login</button>
+    </div>
+    <div (click)='loginWithGoogle()' class="google-box">
+      <div class="google-box-image">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg">
+      </div>
+      <div class="google-box-text">
+        <p>Login with Google</p>
+      </div>
+    </div>
+  </div>
+</div>

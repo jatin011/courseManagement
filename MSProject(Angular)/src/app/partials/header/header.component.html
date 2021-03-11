@@ -1,0 +1,10 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <a href="/home" ><span>Course Managment</span></a>
+    <span class="example-spacer"></span>
+    <button *ngIf="isLoggedIn" mat-raised-button color="accent"  (click)="redirectToHome()"><mat-icon matSuffix>home</mat-icon> Home</button>
+    <button *ngIf="isLoggedIn" mat-raised-button color="accent"  (click)="redirectToTrends()"><mat-icon matSuffix>trending_up</mat-icon> See Trends</button>
+    <button *ngIf="isLoggedIn" mat-raised-button color="accent"  (click)="redirectToAddCourse()"><mat-icon  matSuffix>add_box</mat-icon> Add New Course</button>
+    <button *ngIf="isLoggedIn" mat-raised-button color="warn"  (click)="signOut()"><mat-icon  matSuffix>exit_to_app</mat-icon> Signout</button>
+  </mat-toolbar-row>
+</mat-toolbar>
