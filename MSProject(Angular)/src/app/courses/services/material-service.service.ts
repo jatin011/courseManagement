@@ -35,4 +35,20 @@ getPreviousVersions(courseId,materialId)
   return this.httpClient.get("http://localhost:8090/material/getAllMaterial/"+courseId+"/"+materialId);
 }
 
+
+deleteService(materialId)
+{
+  return this.httpClient.delete("http://localhost:8090/material/deleteLatest/"+materialId);
+}
+
+addNewMaterial(courseId,materialDescription,file)
+{
+  let newMaterialInput=new FormData()
+  newMaterialInput.append("courseId",courseId);
+  newMaterialInput.append("materialDescription",materialDescription);
+  newMaterialInput.append("file",file);
+
+  return this.httpClient.post("http://localhost:8090/material/addMaterial",newMaterialInput);
+}
+
 }

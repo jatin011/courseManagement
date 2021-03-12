@@ -24,9 +24,11 @@
             </div>
           </div>
         </div>
-        <hr>
-        <div *ngIf="materials!=null" class="materials" >
-          <mat-card-title style="color: teal;">Training Materials</mat-card-title>
+      </div>
+
+      <div *ngIf="materials!=null" class="materials" >
+        <mat-card-title style="color: teal;">Training Materials</mat-card-title>
+        <div class="materialGrids">
           <mat-card *ngFor="let material of materials ; index as i" style="padding: 10px;margin-bottom: 10px;">
             <mat-card-subtitle *ngIf="!isEditable[i]" >{{ this.material.materialDescription }}</mat-card-subtitle>
             <mat-form-field *ngIf="isEditable[i]" appearance="standard">
@@ -42,12 +44,17 @@
               </label>
             </div>
 
-            <a  class="materialLink" *ngIf="!isEditable[i]" (click)="downloadFile(material.fileData,material.fileType)"  #TrainingMaterialLink download>{{material.fileName}}</a>
             <div style="display: flex;justify-content: center; margin-bottom: 20px;">
-              <button  mat-raised-button color="primary" *ngIf="!isEditable[i]" (click)="editMaterial(i)"><mat-icon>edit</mat-icon>Edit Material</button>
+              <a  class="materialLink" *ngIf="!isEditable[i]" (click)="downloadFile(material.fileData,material.fileType)"  #TrainingMaterialLink download>{{material.fileName}}</a>
+            </div>
+            <div style="display: flex;justify-content: center; margin-bottom: 20px;">
+              <button  mat-raised-button color="primary" *ngIf="!isEditable[i]" (click)="editMaterial(i)"><mat-icon>edit</mat-icon>Edit </button>
             </div>
             <div style="display: flex;justify-content: center;">
               <button   mat-raised-button  color="primary" *ngIf="isEditable[i]" (click)="doneEditing(material,i)" ><mat-icon>done</mat-icon>Done Editing</button>
+            </div>
+            <div style="display: flex;justify-content: center; margin-bottom: 20px;">
+              <button  mat-raised-button color="warn" *ngIf="!isEditable[i]" (click)="deleteMaterial(material.materialId)"><mat-icon>delete</mat-icon>Delete</button>
             </div>
             <div style="display: flex;justify-content: center;margin-bottom: 20px;">
               <button  mat-raised-button color="accent" *ngIf="!isEditable[i]" (click)="!isPreviousVisible[i] ?getPreviousVersions(i,material.materialId):isPreviousVisible[i]=false "> <mat-icon *ngIf="!isPreviousVisible[i]">list</mat-icon> <mat-icon *ngIf="isPreviousVisible[i]" >highlight_off</mat-icon> {{isPreviousVisible[i] ?" hide Previous Versions" :"See Previous Version"}} </button>
@@ -60,10 +67,29 @@
               <a  class="materialLink" *ngFor="let previous of material.previousVersions" (click)="downloadFile(previous.fileData,previous.fileType)"  #TrainingMaterialLink download>{{previous.fileName}}</a>
             </div>
           </mat-card>
-
-
-
+          <div *ngIf="addMaterialBool" style="display: flex;flex-direction: column;justify-content: center;padding: 20px;border: 1px solid teal; border-radius: 10px;">
+            <h2 style="align-self: center;border-bottom: 1px solid black;">Add New Material</h2>
+            <mat-form-field  appearance="standard">
+              <mat-label>Material Description</mat-label>
+              <textarea matInput placeholder="Description about material " [(ngModel)]="newMaterialDescription" ></textarea>
+              <mat-icon matSuffix >library_books</mat-icon>
+            </mat-form-field>
+            <div style="display: flex;justify-content: center;">
+              <label   class="custom-file-upload">
+                <mat-icon matSuffix>cloud_upload</mat-icon>
+                <input type="file" style="display: none;" (change)="uploadNewFile($event)"/>
+                <span> Upload Material</span>
+              </label>
+            </div>
+            <div style="display: flex;justify-content: center; margin-top: 20px;">
+              <button  mat-raised-button color="primary"  (click)="addNewMaterial()"><mat-icon>add</mat-icon>Add</button>
+            </div>
+          </div>
+          <div style="display: flex;flex-direction:column;justify-content: center;">
+            <button mat-raised-button color="primary" style="height: 60px;width:50px;border-radius: 50%;" (click)="addMaterialBool=true"><mat-icon>add</mat-icon></button>
+          </div>
         </div>
+
       </div>
 
       <div class="feedbackDiv">

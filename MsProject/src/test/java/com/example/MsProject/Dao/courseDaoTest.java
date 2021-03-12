@@ -9,14 +9,18 @@ import com.example.MsProject.courses.Mapper.RowToCourse;
 import com.example.MsProject.courses.Model.Course;
 import com.example.MsProject.courses.Services.SkillServices;
 import com.example.MsProject.feedback.Services.FeedbackService;
+import org.junit.Rule;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.rules.ExpectedException;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import java.beans.ExceptionListener;
+import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
@@ -72,13 +76,16 @@ public class courseDaoTest {
     }
 
 
+
     @Test
     public void getAllCourseTest() throws Exception {
         when(this.jdbcTemplate.query("select * from courses", RowToCourse.mapRowLambda)).thenReturn(courses);
 
         List<Course> allCourses=courseDao.getAllCourses();
         assertEquals(courses,allCourses);
+
     }
+
 
     @Test
     public void getCoursesByIdTest() throws Exception {

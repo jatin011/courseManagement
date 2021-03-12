@@ -30,7 +30,9 @@ export class DetailedCourseComponent implements OnInit {
 
   skills:any=[]
   course:any;
+  addMaterialBool=false;
 
+  newMaterialDescription="";
   previousVersions:any=[];
 
   materials:any;
@@ -142,4 +144,30 @@ s
     }
 
 
+
+    deleteMaterial(materialId)
+    {
+      this.materialService.deleteService(materialId).subscribe(response=>{
+        this._snackBar.open("Deleted Material","Ok",{duration:2000});
+         this.materialService.getMaterial(this.course.courseId).subscribe(material=>{
+          this.materials=material;
+        },err=>{
+          console.log(err)
+        })
+      },err=>{
+        this._snackBar.open("Cannot Delete Now","Ok",{duration:2000});
+      })
+    }
+
+
+    addNewMaterial()
+    {
+      this.materialService.addNewMaterial(this.course.courseId,this.newMaterialDescription,this.newFile).subscribe(response=>{
+        let addedMaterial=response;
+        this.materials.push(addedMaterial[0])
+      });
+      this.newMaterialDescription="";
+      this.newFile=null;
+      this.addMaterialBool=false;
+    }
 }

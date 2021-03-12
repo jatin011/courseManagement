@@ -99,13 +99,13 @@ public class MaterialController {
     }
 
 
-    @DeleteMapping("deleteLatest/{courseId}")
+    @DeleteMapping("deleteLatest/{materialId}")
     @CrossOrigin("*")
-    ResponseEntity<Boolean> deleteLatestMaterial(@PathVariable("courseId") int courseId)
+    ResponseEntity<Boolean> deleteLatestMaterial(@PathVariable("materialId") int materialId)
     {
         try
         {
-            return new ResponseEntity<>(materialService.deleteLatestMaterial(courseId),HttpStatus.OK);
+            return new ResponseEntity<>(materialService.deleteLatestMaterial(materialId),HttpStatus.OK);
         }
         catch (Exception e)
         {
