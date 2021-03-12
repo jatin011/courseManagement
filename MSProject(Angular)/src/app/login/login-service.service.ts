@@ -19,7 +19,8 @@ export class LoginServiceService {
       let currentUser={
         "firstName":response.firstName,
         "lastName":response.lastName,
-        "emailId":response.email
+        "emailId":response.email,
+        "location":"delhi" //demo values
       }
        this.httpClient.post("http://localhost:8090/login/googleLogin",currentUser).subscribe(response1=>{
         this.user=response1;
